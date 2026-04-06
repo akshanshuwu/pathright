@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import { quizQuestions } from '../data/quizQuestions';
 import QuizProgress from '../components/quiz/QuizProgress';
 import QuizOption from '../components/quiz/QuizOption';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export default function Quiz() {
   const navigate = useNavigate();
@@ -61,25 +62,36 @@ export default function Quiz() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-12">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <QuizProgress current={currentStep + 1} total={quizQuestions.length} />
 
-        <div className="bg-white rounded-2xl shadow-md p-8 sm:p-10">
+        <div className="bg-white rounded-3xl shadow-xl p-8 sm:p-12 border border-gray-100 backdrop-blur-sm">
           {currentStep > 0 && (
             <button
               onClick={handleBack}
-              className="text-gray-600 hover:text-gray-900 mb-6 font-medium"
+              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 font-medium transition-colors group"
             >
-              ← Back
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Back
             </button>
           )}
 
-          <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+          <div className="mb-3">
+            <span className="inline-block text-sm font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+              Question {currentStep + 1} of {quizQuestions.length}
+            </span>
+          </div>
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 leading-tight">
             {currentQuestion.question}
           </h2>
 
-          <div className="space-y-3 mb-8">
+          {currentQuestion.type === 'multi' && (
+            <p className="text-sm text-gray-500 mb-6 italic">Select all that apply</p>
+          )}
+
+          <div className="space-y-3 mb-10">
             {currentQuestion.options.map((option) => (
               <QuizOption
                 key={option.value}
@@ -94,13 +106,14 @@ export default function Quiz() {
           <button
             onClick={handleNext}
             disabled={!isAnswered}
-            className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-colors ${
+            className={`group w-full py-4 px-6 rounded-xl font-semibold text-white transition-all inline-flex items-center justify-center gap-2 ${
               isAnswered
-                ? 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+                ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer'
                 : 'bg-gray-300 cursor-not-allowed opacity-50'
             }`}
           >
-            {currentStep < quizQuestions.length - 1 ? 'Next' : 'Submit'}
+            {currentStep < quizQuestions.length - 1 ? 'Next Question' : 'Get My Results'}
+            {isAnswered && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
           </button>
         </div>
       </div>

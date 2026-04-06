@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/AppContext';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { quizCompleted, selectedCourse, resetAll } = useAppContext();
+  const { quizCompleted, selectedCourse } = useAppContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const handleReset = () => {
-    if (window.confirm('Are you sure you want to reset? This will clear all your progress.')) {
-      resetAll();
-      navigate('/');
-      setMobileMenuOpen(false);
-    }
-  };
 
   const handleLogoClick = () => {
     if (quizCompleted) {
@@ -61,12 +53,6 @@ export default function Navbar() {
                 >
                   Dashboard
                 </Link>
-                <button
-                  onClick={handleReset}
-                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-                >
-                  Reset
-                </button>
               </>
             ) : (
               <Link
@@ -116,12 +102,6 @@ export default function Navbar() {
                   >
                     Dashboard
                   </Link>
-                  <button
-                    onClick={handleReset}
-                    className="text-gray-600 hover:text-gray-900 font-medium py-2 text-left"
-                  >
-                    Reset
-                  </button>
                 </>
               ) : (
                 <Link

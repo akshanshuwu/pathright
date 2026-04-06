@@ -1,9 +1,9 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import { courses } from '../data/courses';
 import ProgressWidget from '../components/dashboard/ProgressWidget';
 import WeeklyTasks from '../components/dashboard/WeeklyTasks';
+import { RotateCcw } from 'lucide-react';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -49,10 +49,10 @@ export default function Dashboard() {
     return allTasks.filter(task => !task.completed).slice(0, 5);
   };
 
-  const handleRetake = () => {
-    if (window.confirm('Are you sure you want to retake the quiz? This will reset all your progress.')) {
+  const handleReset = () => {
+    if (window.confirm('Are you sure you want to reset? This will clear all your progress and quiz results.')) {
       resetAll();
-      navigate('/quiz');
+      navigate('/');
     }
   };
 
@@ -81,12 +81,21 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Welcome Section */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Your Learning Dashboard</h1>
-          <div className="flex items-center gap-3">
-            <span className="text-3xl">{course.icon}</span>
-            <span className="text-xl text-gray-600">{course.name}</span>
+        <div className="mb-8 flex items-start justify-between">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">Your Learning Dashboard</h1>
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">{course.icon}</span>
+              <span className="text-xl text-gray-600">{course.name}</span>
+            </div>
           </div>
+          <button
+            onClick={handleReset}
+            className="group inline-flex items-center gap-2 border-2 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 font-semibold py-2 px-4 rounded-lg transition-all"
+          >
+            <RotateCcw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
+            Reset Progress
+          </button>
         </div>
 
         {/* Course Card */}
@@ -138,12 +147,6 @@ export default function Dashboard() {
               className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-2 px-4 rounded-lg transition-colors"
             >
               View Full Roadmap
-            </button>
-            <button
-              onClick={handleRetake}
-              className="border-2 border-gray-300 text-gray-600 hover:bg-gray-50 font-semibold py-2 px-4 rounded-lg transition-colors"
-            >
-              Retake Quiz
             </button>
           </div>
         </div>
