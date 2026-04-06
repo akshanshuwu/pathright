@@ -160,43 +160,43 @@ export default function Landing() {
       {/* Course Detail Modal */}
       {selectedCourse && (
         <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in overflow-y-auto" 
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4 animate-fade-in overflow-y-auto" 
           onClick={() => setSelectedCourse(null)}
           data-lenis-prevent
         >
           <div 
-            className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full my-8 relative"
+            className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-3xl w-full my-4 sm:my-8 relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-start justify-between rounded-t-3xl z-10">
-              <div className="flex items-center gap-4">
-                <span className="text-5xl">{selectedCourse.icon}</span>
-                <div>
-                  <h3 className="text-3xl font-bold text-gray-900">{selectedCourse.name}</h3>
-                  <p className="text-lg text-gray-600">{selectedCourse.tagline}</p>
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 sm:p-6 flex items-start justify-between rounded-t-2xl sm:rounded-t-3xl z-10">
+              <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                <span className="text-4xl sm:text-5xl flex-shrink-0">{selectedCourse.icon}</span>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-xl sm:text-3xl font-bold text-gray-900 truncate">{selectedCourse.name}</h3>
+                  <p className="text-sm sm:text-lg text-gray-600 line-clamp-2">{selectedCourse.tagline}</p>
                 </div>
               </div>
               <button
                 onClick={() => setSelectedCourse(null)}
-                className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
+                className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 ml-2"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
 
-            <div className="p-6 space-y-6 max-h-[60vh] overflow-y-auto scrollbar-hide">
+            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 max-h-[70vh] sm:max-h-[60vh] overflow-y-auto scrollbar-hide">
               {/* Overview */}
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-3">Overview</h4>
-                <p className="text-gray-700 leading-relaxed">{selectedCourse.overview.description}</p>
+                <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Overview</h4>
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{selectedCourse.overview.description}</p>
               </div>
 
               {/* Skills */}
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-3">What You'll Learn</h4>
+                <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What You'll Learn</h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedCourse.skills.map((skill, idx) => (
-                    <span key={idx} className="bg-blue-50 text-blue-700 px-3 py-1 rounded-lg text-sm font-medium">
+                    <span key={idx} className="bg-blue-50 text-blue-700 px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium">
                       {skill.name}
                     </span>
                   ))}
@@ -205,14 +205,14 @@ export default function Landing() {
 
               {/* Careers */}
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-3">Career Opportunities</h4>
-                <div className="grid grid-cols-1 gap-3">
+                <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Career Opportunities</h4>
+                <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {selectedCourse.careers.slice(0, 4).map((career, idx) => (
-                    <div key={idx} className="flex items-start gap-3 text-gray-700 bg-gray-50 p-3 rounded-lg">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <div>
-                        <div className="font-semibold">{career.title}</div>
-                        <div className="text-sm text-gray-600">{career.salary}</div>
+                    <div key={idx} className="flex items-start gap-2 sm:gap-3 text-gray-700 bg-gray-50 p-2 sm:p-3 rounded-lg">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-semibold text-sm sm:text-base">{career.title}</div>
+                        <div className="text-xs sm:text-sm text-gray-600">{career.salary}</div>
                       </div>
                     </div>
                   ))}
@@ -220,16 +220,16 @@ export default function Landing() {
               </div>
 
               {/* CTA */}
-              <div className="pt-4">
+              <div className="pt-2 sm:pt-4">
                 <button
                   onClick={() => {
                     setSelectedCourse(null);
                     navigate('/quiz');
                   }}
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2 group"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2 group text-sm sm:text-base"
                 >
-                  Take Quiz to Get Personalized Roadmap
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <span className="truncate">Take Quiz to Get Personalized Roadmap</span>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </button>
               </div>
             </div>

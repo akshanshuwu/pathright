@@ -81,20 +81,21 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Welcome Section */}
-        <div className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Your Learning Dashboard</h1>
+        <div className="mb-8 flex flex-col sm:flex-row items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Your Learning Dashboard</h1>
             <div className="flex items-center gap-3">
-              <span className="text-3xl">{course.icon}</span>
-              <span className="text-xl text-gray-600">{course.name}</span>
+              <span className="text-2xl sm:text-3xl">{course.icon}</span>
+              <span className="text-lg sm:text-xl text-gray-600 truncate">{course.name}</span>
             </div>
           </div>
           <button
             onClick={handleReset}
-            className="group inline-flex items-center gap-2 border-2 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 font-semibold py-2 px-4 rounded-lg transition-all"
+            className="group inline-flex items-center gap-2 border-2 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all text-sm sm:text-base whitespace-nowrap"
           >
             <RotateCcw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
-            Reset Progress
+            <span className="hidden sm:inline">Reset Progress</span>
+            <span className="sm:hidden">Reset</span>
           </button>
         </div>
 

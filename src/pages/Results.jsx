@@ -80,49 +80,49 @@ export default function Results() {
                     Best Match
                   </div>
                 )}
-                <div className={`bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 ${
+                <div className={`bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 sm:p-8 ${
                   index === 0 ? 'border-2 border-blue-300' : 'border border-gray-200'
                 }`}>
-                  <div className="flex items-start gap-6 mb-6">
-                    <div className="flex-shrink-0 text-6xl group-hover:scale-110 transition-transform duration-300">
+                  <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-6">
+                    <div className="flex-shrink-0 text-5xl sm:text-6xl group-hover:scale-110 transition-transform duration-300">
                       {course.icon}
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-3xl font-bold text-gray-900 mb-2">{course.name}</h3>
-                      <p className="text-xl text-gray-600 font-medium">{recommendation.headline}</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{course.name}</h3>
+                      <p className="text-lg sm:text-xl text-gray-600 font-medium">{recommendation.headline}</p>
                     </div>
-                    <div className="flex-shrink-0 text-center">
-                      <div className="text-5xl font-bold bg-gradient-to-br from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    <div className="flex-shrink-0 text-center self-start sm:self-auto">
+                      <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-br from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                         {recommendation.matchScore}%
                       </div>
-                      <div className="text-sm text-gray-500 font-medium">Match</div>
+                      <div className="text-xs sm:text-sm text-gray-500 font-medium">Match</div>
                     </div>
                   </div>
 
                   <div className="mb-6">
-                    <h4 className="font-bold text-gray-900 mb-3 text-lg">Why it fits you:</h4>
-                    <p className="text-gray-700 leading-relaxed text-base">{recommendation.whyItFitsYou}</p>
+                    <h4 className="font-bold text-gray-900 mb-3 text-base sm:text-lg">Why it fits you:</h4>
+                    <p className="text-gray-700 leading-relaxed text-sm sm:text-base">{recommendation.whyItFitsYou}</p>
                   </div>
 
-                  <div className="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-2xl border border-blue-100">
-                    <h4 className="font-bold text-gray-900 mb-3 text-lg flex items-center gap-2">
-                      <ArrowRight className="w-5 h-5 text-blue-600" />
+                  <div className="mb-6 sm:mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6 rounded-2xl border border-blue-100">
+                    <h4 className="font-bold text-gray-900 mb-3 text-base sm:text-lg flex items-center gap-2">
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                       Your first step:
                     </h4>
-                    <p className="text-gray-700 text-base">{recommendation.firstStep}</p>
+                    <p className="text-gray-700 text-sm sm:text-base">{recommendation.firstStep}</p>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                     <button
                       onClick={() => handleSelectRoadmap(recommendation.courseId)}
-                      className="group flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] inline-flex items-center justify-center gap-2"
+                      className="group flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] inline-flex items-center justify-center gap-2 text-sm sm:text-base"
                     >
                       View 90-Day Roadmap
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                     <button
                       onClick={() => handleSaveDashboard(recommendation.courseId)}
-                      className="flex-1 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-4 px-6 rounded-xl transition-all"
+                      className="flex-1 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all text-sm sm:text-base"
                     >
                       Save to Dashboard
                     </button>

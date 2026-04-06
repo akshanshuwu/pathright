@@ -5,6 +5,7 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Lenis smooth scroll */
@@ -38,6 +39,20 @@ html.lenis, html.lenis body {
   display: none;
 }
 
+/* Touch-friendly buttons */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Prevent text selection on mobile for better UX */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -54,4 +69,16 @@ html.lenis, html.lenis body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  /* Reduce motion for better mobile performance */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
